@@ -1,0 +1,470 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --font-sans: "DM Sans", sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+}
+
+:root {
+  --radius: 0.25rem;
+  --ivory: oklch(97.7% 0.012 88);
+  --sand: oklch(93.5% 0.021 84);
+  --forest: oklch(33% 0.045 160);
+  --forest-deep: oklch(25% 0.038 160);
+  --terracotta: oklch(56% 0.115 42);
+  --charcoal: oklch(24.5% 0.008 60);
+  --gold: oklch(75% 0.085 88);
+  --background: var(--ivory);
+  --foreground: var(--charcoal);
+  --border: oklch(87% 0.018 83);
+  --input: oklch(87% 0.018 83);
+  --ring: var(--forest);
+  --card: oklch(99.2% 0.006 88);
+  --card-foreground: var(--charcoal);
+  --primary: var(--forest);
+  --primary-foreground: var(--ivory);
+  --secondary: var(--sand);
+  --secondary-foreground: var(--charcoal);
+  --muted: oklch(94.5% 0.012 85);
+  --muted-foreground: oklch(48% 0.016 70);
+  --accent: var(--terracotta);
+  --accent-foreground: var(--ivory);
+  --destructive: oklch(50% 0.16 28);
+  --success: oklch(47% 0.11 148);
+  --warning: oklch(55% 0.12 73);
+  --info: oklch(43% 0.08 190);
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  background: var(--ivory);
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100dvh;
+  background: var(--ivory);
+  color: var(--charcoal);
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+*:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 2px;
+}
+::selection {
+  background: oklch(83% 0.07 89);
+  color: var(--forest-deep);
+}
+.serif {
+  font-family: "Newsreader", Georgia, serif;
+}
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.field {
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--charcoal);
+  padding: 9px 11px;
+  transition:
+    border-color 0.16s,
+    box-shadow 0.16s;
+}
+.field:focus {
+  border-color: var(--forest);
+  outline: 0;
+  box-shadow: 0 0 0 3px oklch(33% 0.045 160 / 0.12);
+}
+.field::placeholder {
+  color: oklch(61% 0.013 76);
+}
+.btn {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  padding: 0 13px;
+  font-weight: 600;
+  transition:
+    background 0.16s,
+    color 0.16s,
+    border-color 0.16s,
+    transform 0.16s;
+  white-space: nowrap;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn-primary {
+  background: var(--forest);
+  color: var(--ivory);
+}
+.btn-primary:hover {
+  background: var(--forest-deep);
+}
+.btn-secondary {
+  border-color: var(--border);
+  background: var(--card);
+  color: var(--charcoal);
+}
+.btn-secondary:hover {
+  background: var(--sand);
+}
+.btn-quiet {
+  color: var(--muted-foreground);
+  background: transparent;
+}
+.btn-quiet:hover {
+  background: var(--sand);
+  color: var(--charcoal);
+}
+.btn-danger {
+  background: oklch(95% 0.03 28);
+  color: oklch(42% 0.14 28);
+  border-color: oklch(88% 0.06 28);
+}
+.label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--charcoal);
+  font-size: 12px;
+  font-weight: 600;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--muted-foreground);
+}
+.table-wrap {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+th {
+  color: var(--muted-foreground);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  padding: 12px 16px;
+  background: oklch(97.2% 0.009 86);
+  white-space: nowrap;
+}
+td {
+  border-top: 1px solid oklch(91% 0.013 84);
+  padding: 13px 16px;
+  vertical-align: middle;
+}
+tbody tr:hover {
+  background: oklch(98.3% 0.008 87);
+}
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 99px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  background: var(--sand);
+  color: var(--charcoal);
+}
+.status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 99px;
+  background: currentColor;
+}
+.status.active,
+.status.delivered,
+.status.resolved,
+.status.approved,
+.status.completed {
+  background: oklch(93% 0.045 150);
+  color: oklch(38% 0.1 150);
+}
+.status.pending,
+.status.reviewing,
+.status.processing,
+.status.new,
+.status.quotation-sent {
+  background: oklch(95% 0.05 83);
+  color: oklch(43% 0.11 70);
+}
+.status.shipped,
+.status.in-progress,
+.status.confirmed,
+.status.negotiation {
+  background: oklch(93% 0.035 185);
+  color: oklch(39% 0.075 185);
+}
+.status.inactive,
+.status.closed,
+.status.draft,
+.status.cancelled {
+  background: oklch(94% 0.01 75);
+  color: oklch(47% 0.013 70);
+}
+.status.rejected,
+.status.high,
+.status.returned {
+  background: oklch(94% 0.045 28);
+  color: oklch(45% 0.13 28);
+}
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 38px;
+  border-left: 2px solid transparent;
+  padding: 0 10px;
+  color: oklch(79% 0.018 90);
+  font-size: 13px;
+  border-radius: var(--radius);
+}
+.nav-link:hover {
+  background: oklch(100% 0.001 0 / 0.08);
+  color: var(--ivory);
+}
+.nav-link.active {
+  color: var(--ivory);
+  background: oklch(100% 0.001 0 / 0.11);
+  border-left-color: var(--gold);
+}
+.fade-in {
+  animation: reveal 0.35s ease both;
+}
+.botanical {
+  position: relative;
+  display: flex;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(145deg, oklch(94% 0.025 85), oklch(90% 0.04 75));
+}
+.botanical i {
+  position: absolute;
+  display: block;
+  width: 9px;
+  height: 15px;
+  border-radius: 90% 10% 90% 10%;
+  background: var(--terracotta);
+  transform: rotate(-36deg);
+}
+.botanical i:nth-child(1) {
+  transform: translate(-4px, -6px) rotate(-38deg);
+}
+.botanical i:nth-child(2) {
+  transform: translate(4px, -6px) rotate(38deg);
+}
+.botanical i:nth-child(3) {
+  transform: translate(-6px, 3px) rotate(-76deg);
+}
+.botanical i:nth-child(4) {
+  transform: translate(6px, 3px) rotate(76deg);
+}
+.botanical i:nth-child(5) {
+  width: 7px;
+  height: 9px;
+  transform: translateY(1px);
+  background: var(--gold);
+}
+.botanical span {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  height: 20px;
+  width: 1px;
+  background: var(--forest);
+}
+.botanical-leaf {
+  background: oklch(91% 0.035 145);
+}
+.botanical-leaf i {
+  background: var(--forest);
+  width: 12px;
+  height: 21px;
+}
+.botanical-leaf i:nth-child(2) {
+  transform: translate(4px, 0) rotate(45deg);
+  background: oklch(54% 0.09 145);
+}
+.botanical-leaf i:nth-child(3) {
+  transform: translate(-4px, 2px) rotate(-70deg);
+  background: oklch(43% 0.07 150);
+}
+.botanical-leaf i:nth-child(n + 4) {
+  display: none;
+}
+.botanical-essentials {
+  background: oklch(91% 0.035 78);
+}
+.botanical-essentials i {
+  width: 8px;
+  height: 13px;
+  background: var(--gold);
+  border-radius: 50% 50% 15% 15%;
+}
+.botanical-essentials i:nth-child(2) {
+  transform: translateX(-9px) translateY(3px) rotate(-25deg);
+}
+.botanical-essentials i:nth-child(3) {
+  transform: translateX(9px) translateY(3px) rotate(25deg);
+}
+.botanical-goods {
+  background: oklch(92% 0.025 40);
+}
+.botanical-goods i {
+  background: var(--terracotta);
+}
+.botanical-large {
+  width: 58px;
+  height: 58px;
+}
+.botanical-large i {
+  transform-origin: center;
+}
+.auth-visual {
+  border-radius: var(--radius);
+}
+.auth-flower {
+  position: absolute;
+  inset: 16% 4% 26%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  opacity: 0.62;
+  pointer-events: none;
+}
+.auth-flower .botanical {
+  width: min(28vw, 310px);
+  height: min(28vw, 310px);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 48%,
+    oklch(39% 0.06 152),
+    oklch(31% 0.05 157) 58%,
+    transparent 59%
+  );
+  transform: rotate(-8deg);
+}
+.auth-flower .botanical i {
+  width: 20%;
+  height: 36%;
+  background: var(--gold);
+  box-shadow: 0 0 0 10px oklch(75% 0.085 88 / 0.09);
+}
+.auth-flower .botanical span {
+  height: 52%;
+  background: oklch(81% 0.05 150);
+}
+.auth-flower .botanical-flowers {
+  margin-left: -13%;
+  transform: translateY(15%) scale(0.72) rotate(22deg) !important;
+}
+.auth-flower .botanical-flowers i {
+  background: oklch(79% 0.095 44);
+}
+.auth-flower .botanical-leaf {
+  margin-left: -9%;
+  transform: translateY(-21%) scale(0.82) rotate(54deg) !important;
+}
+.auth-flower .botanical-leaf i {
+  background: oklch(65% 0.075 150);
+}
+@media (max-width: 767px) {
+  .auth-visual {
+    min-height: 290px;
+  }
+  .auth-flower {
+    inset: 10% -10% 18%;
+    opacity: 0.42;
+  }
+  .auth-flower .botanical {
+    width: 250px;
+    height: 250px;
+  }
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
